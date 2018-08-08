@@ -26,7 +26,11 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
     public static final String LIBRARY_FILE = "library.txt";
     public static final String DELIMITER = "::";
 
-    private Map<String, Dvd> dvds = new HashMap<>();
+    private final Map<String, Dvd> dvds;
+
+    public DvdLibraryDaoFileImpl() {
+        this.dvds = new HashMap<>();
+    }
 
     @Override
     public Dvd addDvd(String title, Dvd dvd) throws DvdLibraryDaoException {
@@ -41,7 +45,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
     public List<Dvd> getAllDvdTitles() throws DvdLibraryDaoException {
         loadLibrary();
 
-        return new ArrayList<Dvd>(dvds.values());
+        return new ArrayList<>(dvds.values());
     }
 
     @Override
@@ -63,7 +67,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
     @Override
     public Dvd getDvdByIndex(int index) throws DvdLibraryDaoException {
         loadLibrary();
-        ArrayList<Dvd> dvdList = new ArrayList<Dvd>(dvds.values());
+        ArrayList<Dvd> dvdList = new ArrayList<>(dvds.values());
         
         return dvdList.get(index);
     }
